@@ -1,0 +1,36 @@
+package org.nilesh.springbootcrudoperation;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@RequestMapping("/store")
+public class StoreController {
+	
+	@Autowired 
+	  private StoreServices storeServices;
+	
+	
+	 @GetMapping("/")
+	   public String welCome() {
+		  return "WelCome to Store Service "; 
+	   }
+	  
+	  @PostMapping("/create")
+	  public String create(@RequestBody Store store) {
+		  Store l=storeServices.createStore(store); 
+	  return "Created Successfully"; }
+	  
+	  
+	  @GetMapping("/getAll") 
+	  public List<Store> listOfCurrencies() {
+	  
+	  return storeServices.listOfStore(); }
+}
